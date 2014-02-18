@@ -75,8 +75,9 @@ LIBRARIES := cudart cublas curand pthread \
 PYTHON_LIBRARIES := boost_python python2.7
 WARNINGS := -Wall
 
-# MKL switch
-ifdef USE_MKL
+# MKL switch (default = non-MKL)
+USE_MKL ?= 0
+ifeq ($(USE_MKL), 1)
   LIBRARIES += mkl_rt
   COMMON_FLAGS += -DUSE_MKL
   INCLUDE_DIRS += $(MKL_INCLUDE_DIR)
